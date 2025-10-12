@@ -1,6 +1,9 @@
 import tkinter as tk
 import Whats_on_Zwift_Scraper as Scraper
 import subprocess
+import flask
+
+app = flask.Flask(__name__)
 
 root = tk.Tk()
 root.title("Workout Creator")
@@ -32,5 +35,14 @@ get_button.pack()
 downloaded_label = tk.Label(root, text="", font=("Arial", 10))
 downloaded_label.pack(pady=2)
 
+@app.route("/")
+def home():
+    return "Welcome to the Workout Creator!"
+
+@app.route("/download", methods=["POST"])
+def download_workout():
+    url = flask.request.form["url"]
+    result = Scraper.Scrape(url)
+    return {"message": result}
 
 root.mainloop()
