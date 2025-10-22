@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Creator</title>
+    <link href="{{ url_for('static', filename='styles/style.css') }}?v={{ time() }}" rel="stylesheet">
+</head>
+<body>
+    <h1>Welcome to the Workout Creator</h1>
+    <h2>Workout must be from: https://whatsonzwift.com/workouts/</h2>
+    <form action="/create_workout" method="post">
+        <input type="text" name="url_input" placeholder="Enter WhatsOnZwift workout URL" required>
+        <button type="submit">Download Workout</button>
+    </form>
+</body>
+</html>
